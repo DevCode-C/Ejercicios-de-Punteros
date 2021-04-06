@@ -1,3 +1,4 @@
 *.o
 BubbleSort/*.o
 BubbleSort/*.exe
+BubbleSort/BubbleSort.exe
