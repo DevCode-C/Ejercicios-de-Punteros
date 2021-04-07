@@ -1,7 +1,7 @@
 TARGET = MazeTraversal
 CC = gcc
 OBJS = main.o 
-CFLAGS = -c -std=c99 -Wall -g -o
+CFLAGS = -c -std=c99 -Wall -g -O0 -o
 LDFLAGS += -lm 
 
 all:$(OBJS) $(TARGET)
@@ -18,3 +18,6 @@ clean :
 .PHONY : do
 do : 
 	@./$(TARGET)
+.PHONY : debug
+debug :
+	@gdb $(TARGET)
