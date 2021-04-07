@@ -1,4 +1,4 @@
-TARGET = CardShuffling
+TARGET = MazeTraversal
 CC = gcc
 OBJS = main.o 
 CFLAGS = -c -std=c99 -Wall -g -o
