@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "mazeMap.h"
 
+extern unsigned char mazeZone[ROW][COLUMN];
 
 int main(void){
     for(int i=0;i<12;i++){
