@@ -11,6 +11,14 @@
 
 #define PLAYER  '@'
 
+#define UP      1
+#define DOWN    2
+#define RIGHT   3
+#define LEFT    4
+
+#define BUSY_STATE 1
+#define FREE_STATE 0
+
 /*
     Muestra el mapa de la mazeZone
 */
@@ -32,7 +40,12 @@ void positionChange_memorySpace(uint8_t **SetPositio_X, uint8_t **SetPositio_Y, 
 */
 void searchDoor(uint8_t (*mazeZoneArray)[COLUMN], uint8_t *GetPosition_X, uint8_t *GetPosition_Y);
 
-void positionChange(uint8_t SetPosition_X, uint8_t SetPosition_y, uint8_t CharacterPlayer);
+void positionChange(uint8_t (*mazeZoneArray)[COLUMN] ,uint8_t SetPosition_X, uint8_t SetPosition_y, uint8_t CharacterPlayer);
 
+/*
+    Realiza el moviemiento dentro del mazeArray, ademas de verificar la direccion del jugador para el desplazamiento
+    sin perder la orientacion.
+*/
+uint8_t playerDisplacement(uint8_t *InitialPosition_X, uint8_t *InitialPosition_Y, uint8_t (*mazeZoneArray)[COLUMN]);
 
 #endif
