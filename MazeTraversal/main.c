@@ -4,7 +4,7 @@
 /*
     La relacion entre coordenada y el array de mazeZone es:
               Coordenadas[ Y ][  X   ] 
-                mazeZone[ROW][COLUMN
+                mazeZone[ROW][COLUMN]
 
 */
 
