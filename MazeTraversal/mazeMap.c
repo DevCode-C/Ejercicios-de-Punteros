@@ -58,48 +58,19 @@ uint8_t playerDisplacement(uint8_t *InitialPosition_X, uint8_t *InitialPosition_
     positionChange(mazeZoneArray,*InitialPosition_X,*InitialPosition_Y,PLAYER);
     showMazeZone(mazeZoneArray);
     
-    // while (state){
-    //     if(direction == UP){
-            
-    //     }
-    //     else if(direction == DOWN){
-
-    //     }
-    //     else if(direction == RIGHT){
-            
-    //     }
-    //     else if(direction == LEFT){
-            
-    //     }
-    //     else{
-    //         state = FREE_STATE;
-    //         break;
-    //     }
-    // }
-
     switch (direction){
-    case UP:
-        /* code */
-        break;
-    case DOWN:
-        break;
-    case RIGHT:
-        break;
-    case LEFT:
-        break;
-    default:
-        break;
+        case UP:
+            /* code */
+            break;
+        case DOWN:
+            break;
+        case RIGHT:
+            break;
+        case LEFT:
+            break;
+        default:
+            break;
     }
-    
-    // for(;;){
-    //     // wallPositionRight = *InitialPosition_X + 1;
-    //     // wallPositionLeft = *InitialPosition_X -1 ;
-    //     // wallPositionUp = *InitialPosition_Y - 1 ;
-    //     // wallPositionDown = *InitialPosition_Y + 1;
-
-    // }
-
-    system("pause");
 
     return state;
 }
