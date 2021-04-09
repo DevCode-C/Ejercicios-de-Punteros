@@ -1,4 +1,4 @@
-TARGET = MazeTraversal
+TARGET = CardShufflingV2
 CC = gcc
 OBJS = main.o mazeMap.o
 HEADERS = -I .
