@@ -1,6 +1,6 @@
 TARGET = CardShufflingV2
 CC = gcc
-OBJS = main.o mazeMap.o
+OBJS = main.o 
 HEADERS = -I .
 CFLAGS = -c -std=c99 -Wall -g -O0 -o
 LDFLAGS += -lm 
