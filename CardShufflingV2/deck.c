@@ -29,7 +29,7 @@ void deal(unsigned int wDeck[][FACES], const char *wFaces[], const char *wSuit[]
 }
 
 void printDeck(unsigned int wDeck[][FACES]){
-    for (unsigned char i = 0; i < SUIT; i++){
+    for (unsigned char i = 1; i <= SUIT; i++){
         for (unsigned char j = 0; j < FACES; j++){
             printf("%s\t",wDeck[SUIT][FACES]);
         }
@@ -37,4 +37,25 @@ void printDeck(unsigned int wDeck[][FACES]){
         
     }
     
+}
+
+void dealHand(unsigned int wDeck[][FACES],const char *wFaces[], const char *wSuit[]){
+    static unsigned char card = 1;
+    unsigned char count = 0;
+
+    while (count != DEAL_HAND)
+    {
+        for (unsigned char row = 0; row < SUIT; row++)
+        {
+            for (unsigned char column = 0; column < FACES; column++)
+            {
+                if (wDeck[row][column] == card)
+                {
+                    printf("%5s of %-8s%c", wFaces[column], wSuit[row],card % 2 == 0 ? '\n' : '\t');
+                }
+            }
+        }  
+        card++;
+        count++;
+    }
 }
