@@ -16,8 +16,11 @@ int main(void){
                                 "Eight","Nine","Ten","Jack","Queen","King"};    
 
     dealHand(deck,face,suit);
-    printf("\n\n");
+    // checkHand(deck,face,suit);
+    // printf("\n\n");
     dealHand(deck,face,suit);
+    // dealHand(deck,face,suit);
+    // checkHand(deck,face,suit);
     
     return 0;
 }
