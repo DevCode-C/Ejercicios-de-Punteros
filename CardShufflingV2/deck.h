@@ -11,6 +11,7 @@
     #define     DEAL_HAND   5
 
     void shuffle(unsigned int wDeck[][FACES]);
+    
     void deal(unsigned int wDeck[][FACES], const char *wFaces[], const char *wSuit[]);
 
     void dealHand(unsigned int wDeck[][FACES],const char *wFaces[], const char *wSuit[]);

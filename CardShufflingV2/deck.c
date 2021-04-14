@@ -141,8 +141,6 @@ void checkHand(unsigned int wDeck[][FACES], const char *wFaces[], const char *wS
         printf("\nYou have two pair\n");
     }
     
-    
-
     if (wFacesCount[10]==3)
     {
         printf("\nYou have three of a kind \n");
@@ -151,8 +149,6 @@ void checkHand(unsigned int wDeck[][FACES], const char *wFaces[], const char *wS
     {
         printf("\nYou have four of a kind \n");
     }
-    
-    printf("\n\n");
     for (size_t i = 0; i < SUIT; i++)
     {
         if (wSuitCount[i] == 5)
@@ -162,5 +158,6 @@ void checkHand(unsigned int wDeck[][FACES], const char *wFaces[], const char *wS
         
         // printf("Numero de veces:%d, carta: %s\n",wSuitCount[i],wSuit[i]);
     }
+    printf("\n");
     
 }

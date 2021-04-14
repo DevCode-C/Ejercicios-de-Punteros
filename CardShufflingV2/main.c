@@ -4,6 +4,7 @@
 
 
 
+
 int main(void){
     unsigned int deck[SUIT][FACES] = {0};
 
