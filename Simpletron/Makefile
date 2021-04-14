@@ -1,6 +1,6 @@
-TARGET = MazeTraversal
+TARGET = Simpletron
 CC = gcc
-OBJS = main.o mazeMap.o
+OBJS = main.o SML.o
 HEADERS = -I .
 CFLAGS = -c -std=c99 -Wall -g -O0 -o
 LDFLAGS += -lm 
