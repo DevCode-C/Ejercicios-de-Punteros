@@ -50,4 +50,11 @@
     */
     #define MEMORY_SPACE    100
 
+    /*
+        Operations
+    */
+
+    void printMemory(int32_t *memory, int8_t size);
+    
+
 #endif
