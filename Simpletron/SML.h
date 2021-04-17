@@ -62,23 +62,23 @@
 
     void printMemory(int32_t *memory, int8_t size);
 
-    void getData(int32_t *memory, int8_t size, int8_t *operation, int8_t *operand);
+    void setData(int32_t *memory, int8_t size, int8_t *operation, int8_t *operand);
 
     void readOperation(int32_t *memory, int8_t size, int8_t *operation, int8_t *operand);
 
-    void showMemoory(void);
+    void showMemory(int32_t *memory, int8_t size);
 
     /*
         Operations Functions
     */
 
-    void read(void);
+    void read(int32_t *memory, int8_t *operand, int8_t *counter);
 
-    void write(void);  
+    void write(int32_t *memory, int8_t *operand, int8_t *counter);  
 
-    void load(void);
+    void load(int32_t *memory, int8_t *operand, int8_t *accumulator);
 
-    void store(void);
+    void store(int32_t *memory, int8_t *operand, int8_t *accumulator);
 
     void add(void);
 

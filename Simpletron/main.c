@@ -11,8 +11,11 @@ int8_t operation    = 0;
 int8_t operand      = 0;
 
 int main(void){
-    getData(memoryRegisters,MEMORY_SPACE,&operation,&operand);
+    setData(memoryRegisters,MEMORY_SPACE,&operation,&operand);
+
 
     // printMemory(memoryRegisters,MEMORY_SPACE);
-    readOperation(memoryRegisters, MEMORY_SPACE, &operation, &operand);
+    // readOperation(memoryRegisters, MEMORY_SPACE, &operation, &operand);
+
+    // showMemory(memoryRegisters,MEMORY_SPACE);
 }

@@ -1,6 +1,6 @@
 #include "SML.h"
 
-int32_t accumulator = 0;
+int32_t accumulators = 0;
 int32_t memoryRegisters[MEMORY_SPACE] = {0};
 
 void printMemory(int32_t *memory, int8_t size)
@@ -11,7 +11,7 @@ void printMemory(int32_t *memory, int8_t size)
     }
 }
 
-void getData(int32_t *memory, int8_t size, int8_t *operation, int8_t *operand)
+void setData(int32_t *memory, int8_t size, int8_t *operation, int8_t *operand)
 {
     int32_t tmp = 0;
     for (uint8_t i = 0; i < size; i++)
@@ -45,6 +45,7 @@ void readOperation(int32_t *memory, int8_t size, int8_t *operation, int8_t *oper
         *operation  = (uint8_t)(memory[counter]/100);
         *operand    = (uint8_t)(memory[counter]%100);
         printf("Array[%d], memoryRegister = %d\n",counter,memory[counter]);
+
         if (*operation == HALT)
         {
             state = false;
@@ -57,4 +58,29 @@ void readOperation(int32_t *memory, int8_t size, int8_t *operation, int8_t *oper
         
     } while (state == true);
         
+}
+
+void showMemory(int32_t *memory, int8_t size){
+    for (uint8_t i = 0; i < size; i++)
+    {
+        printf("Memory[%d] = ?: %d \n",i,memory[i]);
+    }
+    
+}
+
+void read(int32_t *memory, int8_t *operand, int8_t *counter){
+    printf("%d ?: ",*counter);
+    scanf("%d",&memory[*operand]);
+}
+
+void write(int32_t *memory, int8_t *operand, int8_t *counter){
+    printf("%d ?: %d",*counter,memory[*counter]);
+}
+
+void load(int32_t *memory, int8_t *operand, int8_t *accumulator){
+    *accumulator = memory[*operand];
+}
+
+void store(int32_t *memory, int8_t *operand, int8_t *accumulator){
+    memory[*operand] = *accumulator;
 }
