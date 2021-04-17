@@ -60,7 +60,8 @@ void readOperation(int32_t *memory, int8_t size, int8_t *operation, int8_t *oper
         
 }
 
-void showMemory(int32_t *memory, int8_t size){
+void showMemory(int32_t *memory, int8_t size)
+{
     for (uint8_t i = 0; i < size; i++)
     {
         printf("Memory[%d] = ?: %d \n",i,memory[i]);
@@ -68,19 +69,75 @@ void showMemory(int32_t *memory, int8_t size){
     
 }
 
-void read(int32_t *memory, int8_t *operand, int8_t *counter){
+void read(int32_t *memory, int8_t *operand, int8_t *counter)
+{
     printf("%d ?: ",*counter);
     scanf("%d",&memory[*operand]);
 }
 
-void write(int32_t *memory, int8_t *operand, int8_t *counter){
+void write(int32_t *memory, int8_t *operand, int8_t *counter)
+{
     printf("%d ?: %d",*counter,memory[*counter]);
 }
 
-void load(int32_t *memory, int8_t *operand, int8_t *accumulator){
+void load(int32_t *memory, int8_t *operand, int8_t *accumulator)
+{
     *accumulator = memory[*operand];
 }
 
-void store(int32_t *memory, int8_t *operand, int8_t *accumulator){
+void store(int32_t *memory, int8_t *operand, int8_t *accumulator)
+{
     memory[*operand] = *accumulator;
+}
+
+void add(int32_t *memory, int8_t *operand, int8_t *accumulator)
+{
+    *accumulator += memory[*operand];
+}
+
+void substract(int32_t *memory, int8_t *operand, int8_t *accumulator)
+{
+    *accumulator -= memory[*operand];
+}
+
+void divide(int32_t *memory, int8_t *operand, int8_t *accumulator)
+{
+    if (memory[*operand] != 0)
+    {
+        *accumulator /= memory[*operand]; 
+    }
+    else
+    {
+        perror("Division entre cero\n");
+    }
+    
+    
+}
+
+void multiply(int32_t *memory, int8_t *operand, int8_t *accumulator)
+{
+    *accumulator *= memory[*operand];
+}
+
+void branch(int32_t *memory, int8_t *operand, int8_t *counter)
+{
+    *counter = *operand;
+}
+
+void branchNeg(int32_t *memory, int8_t *operand, int8_t *counter, int8_t *accumulator)
+{
+    if (*accumulator < 0)
+    {
+        *counter = *operand;
+    }
+    
+}
+
+void branchZero(int32_t *memory, int8_t *operand, int8_t *counter, int8_t *accumulator)
+{
+    if (*accumulator == 0)
+    {
+        *counter = *operand;
+    }
+    
 }

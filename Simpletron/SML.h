@@ -80,19 +80,19 @@
 
     void store(int32_t *memory, int8_t *operand, int8_t *accumulator);
 
-    void add(void);
+    void add(int32_t *memory, int8_t *operand, int8_t *accumulator);
 
-    void substract(void);
+    void substract(int32_t *memory, int8_t *operand, int8_t *accumulator);
 
-    void divide(void);
+    void divide(int32_t *memory, int8_t *operand, int8_t *accumulator);
 
-    void multiply(void);
+    void multiply(int32_t *memory, int8_t *operand, int8_t *accumulator);
 
-    void branch(void);
+    void branch(int32_t *memory, int8_t *operand, int8_t *counter);
 
-    void branchNeg(void);
+    void branchNeg(int32_t *memory, int8_t *operand, int8_t *counter, int8_t *accumulator);
 
-    void branchZero(void);
+    void branchZero(int32_t *memory, int8_t *operand, int8_t *counter, int8_t *accumulator);
 
     void halt(void);
 
