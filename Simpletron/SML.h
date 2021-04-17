@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <stdbool.h>
 
 #ifndef  __SML_H__
 #define  __SML_H__
@@ -51,10 +52,48 @@
     #define MEMORY_SPACE    100
 
     /*
+        MACROS
+    */
+    #define CLS     system("clear")
+
+    /*
         Operations
     */
 
     void printMemory(int32_t *memory, int8_t size);
-    
+
+    void getData(int32_t *memory, int8_t size, int8_t *operation, int8_t *operand);
+
+    void readOperation(int32_t *memory, int8_t size, int8_t *operation, int8_t *operand);
+
+    void showMemoory(void);
+
+    /*
+        Operations Functions
+    */
+
+    void read(void);
+
+    void write(void);  
+
+    void load(void);
+
+    void store(void);
+
+    void add(void);
+
+    void substract(void);
+
+    void divide(void);
+
+    void multiply(void);
+
+    void branch(void);
+
+    void branchNeg(void);
+
+    void branchZero(void);
+
+    void halt(void);
 
 #endif
