@@ -54,7 +54,7 @@
         MACROS
     */
     #define CLS     system("clear")
-    #define SIZE    100UL
+    #define SIZE    1000UL
 
     /*
         Operations
