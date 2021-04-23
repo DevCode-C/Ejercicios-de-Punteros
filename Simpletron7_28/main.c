@@ -4,18 +4,30 @@
 #include <string.h>
 #include "SML.h"
 
-extern int32_t accumulator;
-extern int32_t memoryRegisters[MEMORY_SPACE];
+/*Arrays*/
+int32_t memoryRegisters[SIZE] = {0};
+/**/
 
-int8_t operation    = 0;
-int8_t operand      = 0;
+/*Private variables*/
+int32_t     accumulatorM             = 0;
+uint16_t    instructionCounterM      = 0;
+int32_t     instructionRegisterM     = 0;
+uint8_t     operatioCodeM            = 0;
+int8_t      operandM                 = 0;
+/**/
+
 
 int main(void){
-    setData(memoryRegisters,MEMORY_SPACE,&operation,&operand);
+    welcome();
+    
+    loadImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
+                        &instructionRegisterM,&operatioCodeM,&operandM);
 
 
-    // printMemory(memoryRegisters,MEMORY_SPACE);
-    // readOperation(memoryRegisters, MEMORY_SPACE, &operation, &operand);
+    executeImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
+                        &instructionRegisterM,&operatioCodeM,&operandM);
 
-    // showMemory(memoryRegisters,MEMORY_SPACE);
+    dumpImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
+                        &instructionRegisterM,&operatioCodeM,&operandM);
+    
 }

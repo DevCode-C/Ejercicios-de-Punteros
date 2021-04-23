@@ -45,55 +45,53 @@
     
     #define HALT        43 //   Halt—i.e., the program has completed its task.
 
-
-    /*
-        Memory Space
-    */
-    #define MEMORY_SPACE    100
-
     /*
         MACROS
     */
     #define CLS     system("clear")
+    #define SIZE    100UL
 
     /*
         Operations
     */
 
-    void printMemory(int32_t *memory, int8_t size);
-
-    void setData(int32_t *memory, int8_t size, int8_t *operation, int8_t *operand);
-
-    void readOperation(int32_t *memory, int8_t size, int8_t *operation, int8_t *operand);
-
-    void showMemory(int32_t *memory, int8_t size);
-
+    void welcome(void);
     /*
         Operations Functions
     */
 
-    void read(int32_t *memory, int8_t *operand, int8_t *counter);
+    void read(int32_t *memory, int8_t *operand, uint16_t *counter);
 
-    void write(int32_t *memory, int8_t *operand, int8_t *counter);  
+    void write(int32_t *memory, int8_t *operand, uint16_t *counter);  
 
-    void load(int32_t *memory, int8_t *operand, int8_t *accumulator);
+    void load(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter);
 
-    void store(int32_t *memory, int8_t *operand, int8_t *accumulator);
+    void store(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter);
 
-    void add(int32_t *memory, int8_t *operand, int8_t *accumulator);
+    void add(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter);
 
-    void substract(int32_t *memory, int8_t *operand, int8_t *accumulator);
+    void substract(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter);
 
-    void divide(int32_t *memory, int8_t *operand, int8_t *accumulator);
+    void divide(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter);
 
-    void multiply(int32_t *memory, int8_t *operand, int8_t *accumulator);
+    void multiply(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter);
 
-    void branch(int32_t *memory, int8_t *operand, int8_t *counter);
+    void branch(int32_t *memory, int8_t *operand, uint16_t *counter);
 
-    void branchNeg(int32_t *memory, int8_t *operand, int8_t *counter, int8_t *accumulator);
+    void branchNeg(int32_t *memory, int8_t *operand, uint16_t *counter, int32_t *accumulator);
 
-    void branchZero(int32_t *memory, int8_t *operand, int8_t *counter, int8_t *accumulator);
+    void branchZero(int32_t *memory, int8_t *operand, uint16_t *counter, int32_t *accumulator);
 
     void halt(void);
 
+    /*Main functions*/
+    void loadImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instructionCounter,\
+                            int32_t *instructionRegister, uint8_t *operatioCode, int8_t *operand);
+
+    void executeImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instructionCounter,\
+                                int32_t *instructionRegister, uint8_t *operatioCode, int8_t *operand);
+
+    void dumpImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instructionCounter,\
+                            int32_t *instructionRegister, uint8_t *operatioCode, int8_t *operand);
+    /**/
 #endif
