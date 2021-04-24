@@ -78,6 +78,18 @@ void multiply(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *
     *counter += 1;
 }
 
+void remaind(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter)
+{
+    *accumulator %= memory[*operand];
+    *counter += 1;
+}
+
+void exponetation(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter)
+{
+    *accumulator = pow((double)*accumulator,(double)memory[*operand]);
+    *counter += 1;
+}
+
 void branch(int32_t *memory, int8_t *operand, uint16_t *counter)
 {
     *counter = *operand;
@@ -135,10 +147,8 @@ void loadImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instruc
 void executeImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instructionCounter,\
                                 int32_t *instructionRegister, uint8_t *operatioCode, int8_t *operand)
 {
-        do
-    {
-        
-        
+    do
+    {        
         *instructionRegister     = memory[*instructionCounter];
         *operatioCode            = *instructionRegister / 100;
         *operand                 = *instructionRegister % 100;
@@ -196,11 +206,11 @@ void dumpImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instruc
                             int32_t *instructionRegister, uint8_t *operatioCode, int8_t *operand)
 {
     printf("REGISTERS:\nAcummulator\t\t%+05ld\n"\
-        "instructionCounter\t%02ld\n"\
-        "instructionRegister\t%+05ld\n"\
-        "operatioCode\t\t%02ld\n"\
-        "operand\t\t\t%02ld\n\n",\
-        *acummulator,*instructionCounter,*instructionRegister,*operatioCode,*operand);
+            "instructionCounter\t%02ld\n"\
+            "instructionRegister\t%+05ld\n"\
+            "operatioCode\t\t%02ld\n"\
+            "operand\t\t\t%02ld\n\n",\
+            *acummulator,*instructionCounter,*instructionRegister,*operatioCode,*operand);
 
     printf("MEMORY:\n");
     printf("\t 0\t 1\t 2\t 3\t 4\t 5\t 6\t 7\t 8\t 9\n");
