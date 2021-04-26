@@ -11,15 +11,6 @@ void welcome(void)
             "*** your program. ***\n");
 }
 
-void showMemory(int32_t *memory, int8_t size)
-{
-    for (uint8_t i = 0; i < size; i++)
-    {
-        printf("Memory[%d] = ?: %d \n",i,memory[i]);
-    }
-    
-}
-
 void read(int32_t *memory, int8_t *operand, uint16_t *counter)
 {
     scanf("%d",&memory[*operand]);
@@ -128,18 +119,42 @@ void halt(void)
     printf("*** Simpletron execution terminated ***\n");
 }
 
+int16_t ConversionHex_to_Dec(char character)
+{
+    if (isdigit(character))
+    {
+        return character - '0';
+    }
+    return (10 +(toupper(character) - 'A'));
+    
+}
+
 void loadImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instructionCounter,\
                             int32_t *instructionRegister, uint8_t *operatioCode, int8_t *operand)
 {
-    int32_t word        = 0;
-    uint8_t counter     = 0;
+    uint32_t word       = 0;
+    uint16_t counter     = 0;
+    uint8_t palabra[6] = {0};
     do
     {
         printf("%d ?  ",counter);
-        scanf("%d",&word);
+        scanf("%s",palabra);
+        word = 0;
+        for (uint8_t i = 0; i < strlen(palabra); i++)
+        {
+            if (i>0)
+            {
+                word = word << 4;
+            }
+            word += ConversionHex_to_Dec(palabra[i]);
+        }
+        printf("\t%lu\n",word);
+        
+
         memory[counter] = word;
         counter++;
-    } while (word != -9999);
+
+    } while (word != 1048575);
     printf("*** Program loading completed ***\n");
     printf("*** Program execution begins *** \n\n");
 }
@@ -213,12 +228,14 @@ void dumpImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instruc
             *acummulator,*instructionCounter,*instructionRegister,*operatioCode,*operand);
 
     printf("MEMORY:\n");
-    printf("\t 0\t 1\t 2\t 3\t 4\t 5\t 6\t 7\t 8\t 9\n");
-    for (unsigned char i = 0; i < SIZE; i++){
-        if(i%10==0){
+    printf("\t 0\t 1\t 2\t 3\t 4\t 5\t 6\t 7\t 8\t 9\t 10\t "\
+            "11\t 12\t 13\t 14\t 15\t 16\t 17\t 18\t 19\t");
+    for (uint16_t i = 0; i < SIZE; i++){
+        if(i%20==0){
             printf("\n");
             printf("%d",i);
         }
         printf("\t %+05ld",memory[i]);
     }
+    printf("\n");
 }

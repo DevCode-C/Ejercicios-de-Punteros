@@ -3,6 +3,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <math.h>
+#include <string.h>
+#include <ctype.h>
 
 #ifndef  __SML_H__
 #define  __SML_H__
@@ -103,4 +105,6 @@
     void dumpImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instructionCounter,\
                             int32_t *instructionRegister, uint8_t *operatioCode, int8_t *operand);
     /**/
+
+    int16_t ConversionHex_to_Dec(char character);
 #endif
