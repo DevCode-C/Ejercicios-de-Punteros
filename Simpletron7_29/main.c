@@ -23,10 +23,10 @@ int main(void){
     loadImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
                         &instructionRegisterM,&operatioCodeM,&operandM);
 
-    // executeImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
-                        // &instructionRegisterM,&operatioCodeM,&operandM);
-
-    dumpImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
+    executeImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
                         &instructionRegisterM,&operatioCodeM,&operandM);
+
+    // dumpImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
+    //                     &instructionRegisterM,&operatioCodeM,&operandM);
     
 }

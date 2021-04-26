@@ -24,6 +24,8 @@
 
     #define STORE       21 //   Store a word from the accumulator into a specific location in memory.
 
+    #define NEWLINE     22 // 
+
     /*
         Arithmetic operations:
     */
@@ -74,6 +76,8 @@
     void load(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter);
 
     void store(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter);
+
+    void newline(int32_t *memory,uint16_t *counter);
 
     void add(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter);
 

@@ -1,5 +1,8 @@
 #include "SML.h"
+#define _OPEN_SYS_ITOA_EXT
+#include <stdlib.h>
 
+// extern void itoa();
 void welcome(void)
 {
     printf("*** Welcome to Simpletron! ***\n"\
@@ -27,6 +30,11 @@ void load(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *coun
 {
     *accumulator = memory[*operand];
     *counter += 1;
+}
+
+void newline(int32_t *memory,uint16_t *counter)
+{
+    *counter += 1; 
 }
 
 void store(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter)
@@ -138,9 +146,10 @@ void loadImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instruc
     do
     {
         printf("%d ?  ",counter);
+        fflush(stdin);
         scanf("%s",palabra);
         word = 0;
-        for (uint8_t i = 0; i < strlen(palabra); i++)
+        for (uint8_t i = 0; i < strlen((const char *)palabra); i++)
         {
             if (i>0)
             {
@@ -148,9 +157,6 @@ void loadImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instruc
             }
             word += ConversionHex_to_Dec(palabra[i]);
         }
-        printf("\t%lu\n",word);
-        
-
         memory[counter] = word;
         counter++;
 
@@ -163,7 +169,14 @@ void executeImplementation(int32_t *memory, int32_t *acummulator, uint16_t *inst
                                 int32_t *instructionRegister, uint8_t *operatioCode, int8_t *operand)
 {
     do
-    {        
+    {   
+        
+        char characterHex[6] = {0};
+        itoa(memory[*instructionCounter],characterHex,16);
+
+        printf("%s\n",characterHex);
+
+        
         *instructionRegister     = memory[*instructionCounter];
         *operatioCode            = *instructionRegister / 100;
         *operand                 = *instructionRegister % 100;
@@ -214,7 +227,7 @@ void executeImplementation(int32_t *memory, int32_t *acummulator, uint16_t *inst
             break;
         }
         printf("\n");
-    } while (*operatioCode != HALT);
+    } while (*operatioCode != HALT || *instructionCounter == 999);
 }
 
 void dumpImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instructionCounter,\
@@ -235,7 +248,7 @@ void dumpImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instruc
             printf("\n");
             printf("%d",i);
         }
-        printf("\t %+05ld",memory[i]);
+        printf("\t %+06ld",memory[i]);
     }
     printf("\n");
 }
