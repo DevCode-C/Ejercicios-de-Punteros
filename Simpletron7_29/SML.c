@@ -14,48 +14,49 @@ void welcome(void)
             "*** your program. ***\n");
 }
 
-void read(int32_t *memory, int8_t *operand, uint16_t *counter)
+void read(double *memory, int8_t *operand, uint16_t *counter)
 {
-    scanf("%d",&memory[*operand]);
+    scanf("%lf",&memory[*operand]);
+    printf("%0.2lf\n",memory[*operand]);
     *counter += 1;
 }
 
-void write(int32_t *memory, int8_t *operand, uint16_t *counter)
+void write(double *memory, int8_t *operand, uint16_t *counter)
 {
-    printf("%d",memory[*operand]);
+    printf("%0.2lf",memory[*operand]);
     *counter += 1;
 }
 
-void load(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter)
+void load(double *memory, int8_t *operand, double *accumulator, uint16_t *counter)
 {
     *accumulator = memory[*operand];
     *counter += 1;
 }
 
-void newline(int32_t *memory,uint16_t *counter)
+void newline(double *memory,uint16_t *counter)
 {
     *counter += 1; 
 }
 
-void store(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter)
+void store(double *memory, int8_t *operand, double *accumulator, uint16_t *counter)
 {
     memory[*operand] = *accumulator;
     *counter += 1;
 }
 
-void add(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter)
+void add(double *memory, int8_t *operand, double *accumulator, uint16_t *counter)
 {
     *accumulator += memory[*operand];
     *counter += 1;
 }
 
-void substract(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter)
+void substract(double *memory, int8_t *operand, double *accumulator, uint16_t *counter)
 {
     *accumulator -= memory[*operand];
     *counter += 1;
 }
 
-void divide(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter)
+void divide(double *memory, int8_t *operand, double *accumulator, uint16_t *counter)
 {
     if (memory[*operand] != 0)
     {
@@ -71,30 +72,31 @@ void divide(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *co
     
 }
 
-void multiply(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter)
+void multiply(double *memory, int8_t *operand, double *accumulator, uint16_t *counter)
 {
     *accumulator *= memory[*operand];
     *counter += 1;
 }
 
-void remaind(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter)
+void remaind(double *memory, int8_t *operand, double *accumulator, uint16_t *counter)
 {
-    *accumulator %= memory[*operand];
+    *accumulator = remainderl(*accumulator,memory[*operand]);
+    // *accumulator %= memory[*operand];
     *counter += 1;
 }
 
-void exponetation(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter)
+void exponetation(double *memory, int8_t *operand, double *accumulator, uint16_t *counter)
 {
     *accumulator = pow((double)*accumulator,(double)memory[*operand]);
     *counter += 1;
 }
 
-void branch(int32_t *memory, int8_t *operand, uint16_t *counter)
+void branch(double *memory, int8_t *operand, uint16_t *counter)
 {
     *counter = *operand;
 }
 
-void branchNeg(int32_t *memory, int8_t *operand, uint16_t *counter, int32_t *accumulator)
+void branchNeg(double *memory, int8_t *operand, uint16_t *counter, double *accumulator)
 {
     if (*accumulator < 0)
     {
@@ -108,7 +110,7 @@ void branchNeg(int32_t *memory, int8_t *operand, uint16_t *counter, int32_t *acc
     
 }
 
-void branchZero(int32_t *memory, int8_t *operand, uint16_t *counter, int32_t *accumulator)
+void branchZero(double *memory, int8_t *operand, uint16_t *counter, double *accumulator)
 {
     if (*accumulator == 0)
     {
@@ -137,54 +139,54 @@ int16_t ConversionHex_to_Dec(char character)
     
 }
 
-void loadImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instructionCounter,\
+void loadImplementation(double *memory, double *acummulator, uint16_t *instructionCounter,\
                             int32_t *instructionRegister, uint8_t *operatioCode, int8_t *operand)
 {
     uint32_t word       = 0;
     uint16_t counter     = 0;
-    uint8_t palabra[6] = {0};
+    // uint8_t palabra[6] = {0};
     do
     {
         printf("%d ?  ",counter);
-        fflush(stdin);
-        scanf("%s",palabra);
-        word = 0;
-        for (uint8_t i = 0; i < strlen((const char *)palabra); i++)
-        {
-            if (i>0)
-            {
-                word = word << 4;
-            }
-            word += ConversionHex_to_Dec(palabra[i]);
-        }
-        memory[counter] = word;
+        // fflush(stdin);
+        scanf("%d",&word);
+        // word = 0;
+        // for (uint8_t i = 0; i < strlen((const char *)palabra); i++)
+        // {
+        //     if (i>0)
+        //     {
+        //         word = word << 4;
+        //     }
+        //     word += ConversionHex_to_Dec(palabra[i]);
+        // }
+        memory[counter] = (double)word;
         counter++;
 
-    } while (word != 1048575);
+    } while (/*word != 1048575 ||*/ word != -9999);
     printf("*** Program loading completed ***\n");
     printf("*** Program execution begins *** \n\n");
 }
 
-void executeImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instructionCounter,\
+void executeImplementation(double *memory, double *acummulator, uint16_t *instructionCounter,\
                                 int32_t *instructionRegister, uint8_t *operatioCode, int8_t *operand)
 {
     do
     {   
         
-        char characterHex[6] = {0};
-        itoa(memory[*instructionCounter],characterHex,16);
+        // char characterHex[6] = {0};
+        // itoa(memory[*instructionCounter],characterHex,16);
 
-        printf("%s\n",characterHex);
+        // printf("%s\n",characterHex);
 
         
-        *instructionRegister     = memory[*instructionCounter];
+        *instructionRegister     = (int32_t)memory[*instructionCounter];
         *operatioCode            = *instructionRegister / 100;
         *operand                 = *instructionRegister % 100;
         printf("%d ?  %d\t",*instructionCounter,*instructionRegister);
         switch (*operatioCode)
         {
         case READ:
-            read(memory,operand,instructionCounter);
+            read((double*)memory,operand,instructionCounter);
             break;
         case WRITE:
             write(memory,operand,instructionCounter);
@@ -230,7 +232,7 @@ void executeImplementation(int32_t *memory, int32_t *acummulator, uint16_t *inst
     } while (*operatioCode != HALT || *instructionCounter == 999);
 }
 
-void dumpImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instructionCounter,\
+void dumpImplementation(double *memory, double *acummulator, uint16_t *instructionCounter,\
                             int32_t *instructionRegister, uint8_t *operatioCode, int8_t *operand)
 {
     printf("REGISTERS:\nAcummulator\t\t%+05ld\n"\
@@ -248,7 +250,8 @@ void dumpImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instruc
             printf("\n");
             printf("%d",i);
         }
-        printf("\t %+06ld",memory[i]);
+        // printf("\t %+05ld",(int64_t)memory[i]);
+        printf("\t %+0.2f",memory[i]);
     }
     printf("\n");
 }

@@ -5,11 +5,11 @@
 #include "SML.h"
 
 /*Arrays*/
-int32_t memoryRegisters[SIZE] = {0};
+double memoryRegisters[SIZE] = {0};
 /**/
 
 /*Private variables*/
-int32_t     accumulatorM             = 0;
+double      accumulatorM             = 0;
 uint16_t    instructionCounterM      = 0;
 int32_t     instructionRegisterM     = 0;
 uint8_t     operatioCodeM            = 0;
@@ -26,7 +26,7 @@ int main(void){
     executeImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
                         &instructionRegisterM,&operatioCodeM,&operandM);
 
-    // dumpImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
-    //                     &instructionRegisterM,&operatioCodeM,&operandM);
+    dumpImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
+                        &instructionRegisterM,&operatioCodeM,&operandM);
     
 }
