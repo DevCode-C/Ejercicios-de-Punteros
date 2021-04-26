@@ -3,6 +3,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <math.h>
+#include <string.h>
+#include <ctype.h>
 
 #ifndef  __SML_H__
 #define  __SML_H__
@@ -21,6 +23,8 @@
     #define LOAD        20 //   Load a word from a specific location in memory into the accumulator.
 
     #define STORE       21 //   Store a word from the accumulator into a specific location in memory.
+
+    #define NEWLINE     22 // 
 
     /*
         Arithmetic operations:
@@ -73,6 +77,8 @@
 
     void store(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter);
 
+    void newline(int32_t *memory,uint16_t *counter);
+
     void add(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter);
 
     void substract(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter);
@@ -103,4 +109,6 @@
     void dumpImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instructionCounter,\
                             int32_t *instructionRegister, uint8_t *operatioCode, int8_t *operand);
     /**/
+
+    int16_t ConversionHex_to_Dec(char character);
 #endif

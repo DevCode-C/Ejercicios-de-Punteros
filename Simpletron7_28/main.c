@@ -23,7 +23,6 @@ int main(void){
     loadImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
                         &instructionRegisterM,&operatioCodeM,&operandM);
 
-
     executeImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
                         &instructionRegisterM,&operatioCodeM,&operandM);
 
