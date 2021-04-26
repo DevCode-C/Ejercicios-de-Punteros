@@ -26,7 +26,7 @@ int main(void){
     executeImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
                         &instructionRegisterM,&operatioCodeM,&operandM);
 
-    dumpImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
-                        &instructionRegisterM,&operatioCodeM,&operandM);
+    // dumpImplementation(memoryRegisters,&accumulatorM,&instructionCounterM,\
+    //                     &instructionRegisterM,&operatioCodeM,&operandM);
     
 }

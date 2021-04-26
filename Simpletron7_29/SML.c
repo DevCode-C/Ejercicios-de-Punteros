@@ -1,5 +1,8 @@
 #include "SML.h"
+#define _OPEN_SYS_ITOA_EXT
+#include <stdlib.h>
 
+// extern void itoa();
 void welcome(void)
 {
     printf("*** Welcome to Simpletron! ***\n"\
@@ -9,15 +12,6 @@ void welcome(void)
             "*** You then type the word for that location. ***\n"\
             "*** Type the sentinel -99999 to stop entering ***\n"
             "*** your program. ***\n");
-}
-
-void showMemory(int32_t *memory, int8_t size)
-{
-    for (uint8_t i = 0; i < size; i++)
-    {
-        printf("Memory[%d] = ?: %d \n",i,memory[i]);
-    }
-    
 }
 
 void read(int32_t *memory, int8_t *operand, uint16_t *counter)
@@ -36,6 +30,11 @@ void load(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *coun
 {
     *accumulator = memory[*operand];
     *counter += 1;
+}
+
+void newline(int32_t *memory,uint16_t *counter)
+{
+    *counter += 1; 
 }
 
 void store(int32_t *memory, int8_t *operand, int32_t *accumulator, uint16_t *counter)
@@ -128,18 +127,40 @@ void halt(void)
     printf("*** Simpletron execution terminated ***\n");
 }
 
+int16_t ConversionHex_to_Dec(char character)
+{
+    if (isdigit(character))
+    {
+        return character - '0';
+    }
+    return (10 +(toupper(character) - 'A'));
+    
+}
+
 void loadImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instructionCounter,\
                             int32_t *instructionRegister, uint8_t *operatioCode, int8_t *operand)
 {
-    int32_t word        = 0;
-    uint8_t counter     = 0;
+    uint32_t word       = 0;
+    uint16_t counter     = 0;
+    uint8_t palabra[6] = {0};
     do
     {
         printf("%d ?  ",counter);
-        scanf("%d",&word);
+        fflush(stdin);
+        scanf("%s",palabra);
+        word = 0;
+        for (uint8_t i = 0; i < strlen((const char *)palabra); i++)
+        {
+            if (i>0)
+            {
+                word = word << 4;
+            }
+            word += ConversionHex_to_Dec(palabra[i]);
+        }
         memory[counter] = word;
         counter++;
-    } while (word != -9999);
+
+    } while (word != 1048575);
     printf("*** Program loading completed ***\n");
     printf("*** Program execution begins *** \n\n");
 }
@@ -148,7 +169,14 @@ void executeImplementation(int32_t *memory, int32_t *acummulator, uint16_t *inst
                                 int32_t *instructionRegister, uint8_t *operatioCode, int8_t *operand)
 {
     do
-    {        
+    {   
+        
+        char characterHex[6] = {0};
+        itoa(memory[*instructionCounter],characterHex,16);
+
+        printf("%s\n",characterHex);
+
+        
         *instructionRegister     = memory[*instructionCounter];
         *operatioCode            = *instructionRegister / 100;
         *operand                 = *instructionRegister % 100;
@@ -199,7 +227,7 @@ void executeImplementation(int32_t *memory, int32_t *acummulator, uint16_t *inst
             break;
         }
         printf("\n");
-    } while (*operatioCode != HALT);
+    } while (*operatioCode != HALT || *instructionCounter == 999);
 }
 
 void dumpImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instructionCounter,\
@@ -213,12 +241,14 @@ void dumpImplementation(int32_t *memory, int32_t *acummulator, uint16_t *instruc
             *acummulator,*instructionCounter,*instructionRegister,*operatioCode,*operand);
 
     printf("MEMORY:\n");
-    printf("\t 0\t 1\t 2\t 3\t 4\t 5\t 6\t 7\t 8\t 9\n");
-    for (unsigned char i = 0; i < SIZE; i++){
-        if(i%10==0){
+    printf("\t 0\t 1\t 2\t 3\t 4\t 5\t 6\t 7\t 8\t 9\t 10\t "\
+            "11\t 12\t 13\t 14\t 15\t 16\t 17\t 18\t 19\t");
+    for (uint16_t i = 0; i < SIZE; i++){
+        if(i%20==0){
             printf("\n");
             printf("%d",i);
         }
-        printf("\t %+05ld",memory[i]);
+        printf("\t %+06ld",memory[i]);
     }
+    printf("\n");
 }
